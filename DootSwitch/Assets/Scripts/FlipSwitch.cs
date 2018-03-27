@@ -9,6 +9,7 @@ public class FlipSwitch : NetworkBehaviour {
 	[SerializeField] Material on;
 	[SerializeField] Material off;
 	[SerializeField] bool onOff = false;
+	public GameObject YouText;
 	bool canFlip;
 	
 
@@ -22,14 +23,26 @@ public class FlipSwitch : NetworkBehaviour {
 			// transform.Translate(Vector3.up * 3);
 		// }
 		if (isServer) onOff = true;
+		
+		if (isServer)
+		{
+			if (isLocalPlayer) transform.Translate(Vector3.up );
+			else transform.Translate(-Vector3.up);
+		}
+		// else if (isClient)
+		// {
+			// if (isLocalPlayer) transform.Translate(-Vector3.up);
+			// else transform.Translate(Vector3.up);
+		// }
+		
 		if (!isLocalPlayer)
 		{
 			transform.tag = "Player";
 			onOff = !onOff;
 			Debug.Log(transform.tag);
 		}
-		if (isLocalPlayer && isServer) transform.Translate(Vector3.up * 3);
-			
+		if (isLocalPlayer) Instantiate(YouText, transform.position, Quaternion.identity);
+		
 		if (onOff == true) GetComponent<Renderer>().material = on;
 		else if (onOff == false) GetComponent<Renderer>().material = off;
 		// else GetComponent<Renderer>().material = off;
@@ -79,7 +92,7 @@ public class FlipSwitch : NetworkBehaviour {
 	[Command]
 	void CmdFlip()
 	{
-		doot.Play();
+		//doot.Play();
 		Debug.Log("I got flipped!");
 		if (onOff == true)
 		{
@@ -95,7 +108,7 @@ public class FlipSwitch : NetworkBehaviour {
 	[ClientRpc]
 	void RpcFlip()
 	{
-		doot.Play();
+		//doot.Play();
 		Debug.Log("I got flipped!");
 		if (onOff == true)
 		{
@@ -110,6 +123,7 @@ public class FlipSwitch : NetworkBehaviour {
 	
 	public void Flip()
 	{
+		if (!isLocalPlayer) doot.Play();
 		Debug.Log("I got flipped!");
 		if (onOff == true)
 		{

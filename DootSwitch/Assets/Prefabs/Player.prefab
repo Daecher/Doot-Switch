@@ -246,3 +246,4 @@ MonoBehaviour:
   on: {fileID: 2100000, guid: 5dbca1e53b97dc440b4db3499edabd49, type: 2}
   off: {fileID: 2100000, guid: 8482d91e7796afa40ab19c9b24d57488, type: 2}
   onOff: 0
+  YouText: {fileID: 1682311465059276, guid: 55cdc7e45188b6c42918383fd98be675, type: 2}
