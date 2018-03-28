@@ -9,3 +9,8 @@ Search through the [releases](https://github.com/Daecher/Doot-Switch/releases) p
 ### Built With
 * Unity
 * Audacity
+
+### To-do list
+- [ ] Numbers
+- [ ] More screaming
+- [ ] Hats
